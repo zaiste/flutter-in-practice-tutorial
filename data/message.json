@@ -22,5 +22,9 @@
   {
     "subject": "Another entry from JSON",
     "body": "Amet fugiat consectetur ut consequat aliquip esse mollit qui duis ea non."
+  },
+  {
+    "subject": "Is Automatic Serialization Working?",
+    "body": "Amet fugiat consectetur ut consequat aliquip esse mollit qui duis ea non."
   }
 ]
