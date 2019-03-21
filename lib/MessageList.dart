@@ -6,6 +6,7 @@ import 'package:emailapp/MessageDetail.dart';
 import 'package:flutter/material.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class MessageList extends StatefulWidget {
   final String title;
@@ -36,14 +37,13 @@ class _MessageListState extends State<MessageList> {
         title: Text(widget.title),
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.refresh),
-              onPressed: () async {
-                var _messages = await Message.browse();
-
-                setState(() {
-                  messages = _messages;
-                });
-              })
+            icon: Icon(Icons.refresh),
+            onPressed: () async {
+              setState(() {
+                future = Message.browse();
+              });
+            },
+          )
         ],
       ),
       drawer: Drawer(
@@ -128,26 +128,63 @@ class _MessageListState extends State<MessageList> {
                 itemBuilder: (BuildContext context, int index) {
                   Message message = messages[index];
 
-                  return ListTile(
-                    title: Text(message.subject),
-                    isThreeLine: true,
-                    leading: CircleAvatar(
-                      child: Text('PJ'),
+                  return Slidable(
+                    delegate: SlidableDrawerDelegate(),
+                    actionExtentRatio: 0.25,
+                    actions: <Widget>[
+                      IconSlideAction(
+                        caption: 'Archive',
+                        color: Colors.blue,
+                        icon: Icons.archive,
+                        onTap: () {},
+                      ),
+                      IconSlideAction(
+                        caption: 'Share',
+                        color: Colors.indigo,
+                        icon: Icons.share,
+                        onTap: () {},
+                      ),
+                    ],
+                    secondaryActions: <Widget>[
+                      IconSlideAction(
+                        caption: 'More',
+                        color: Colors.black45,
+                        icon: Icons.more_horiz,
+                        onTap: () {},
+                      ),
+                      IconSlideAction(
+                        caption: 'Delete',
+                        color: Colors.red,
+                        icon: Icons.delete,
+                        onTap: () {
+                          setState(() {
+                            messages.removeAt(index);
+                          });
+                        },
+                      ),
+                    ],
+                    child: ListTile(
+                      title: Text(message.subject),
+                      isThreeLine: true,
+                      leading: CircleAvatar(
+                        child: Text('PJ'),
+                      ),
+                      subtitle: Text(
+                        message.body,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                MessageDetail(message.subject, message.body),
+                          ),
+                        );
+                      },
                     ),
-                    subtitle: Text(
-                      message.body,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              MessageDetail(message.subject, message.body),
-                        ),
-                      );
-                    },
+                    key: ObjectKey(message),
                   );
                 },
               );
