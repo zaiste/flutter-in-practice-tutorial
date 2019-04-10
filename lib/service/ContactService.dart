@@ -7,16 +7,19 @@ import 'package:http/http.dart' as http;
 class ContactService {
   static String _url = "https://jsonplaceholder.typicode.com/users";
 
-  static Future<List<Contact>> browse() async {
+  static Future<List<Contact>> browse({String filter}) async {
     http.Response response = await http.get(_url);
     String content = response.body;
 
-    await Future.delayed(Duration(seconds: 3));
     List collection = json.decode(content);
 
-    List _contacts = collection.map((_) => Contact.fromJson(_)).toList();
+    Iterable<Contact> _contacts = collection.map((_) => Contact.fromJson(_));
 
-    return _contacts;
+    if (filter != null && filter.isNotEmpty)
+      _contacts = _contacts
+          .where((contact) => contact.name.toLowerCase().contains(filter));
+
+    return _contacts.toList();
   }
 }
 

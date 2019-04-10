@@ -1,5 +1,4 @@
 import 'package:emailapp/App.dart';
-import 'package:emailapp/MessageList.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(EmailApp());

@@ -7,11 +7,17 @@ class ContactManager {
   final StreamController<int> _contactCount = StreamController<int>();
   Stream<int> get contactCount => _contactCount.stream;
 
-  Stream<List<Contact>> get contactListView async* {
-    yield await ContactService.browse();
-  }
+  Stream<List<Contact>> get contactListView =>
+      Stream.fromFuture(ContactService.browse());
+
+  Stream<List<Contact>> filteredView({String filter}) =>
+      Stream.fromFuture(ContactService.browse(filter: filter));
 
   ContactManager() {
     contactListView.listen((list) => _contactCount.add(list.length));
+  }
+
+  void dispose() {
+    _contactCount.close();
   }
 }
