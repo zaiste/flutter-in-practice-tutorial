@@ -22,6 +22,7 @@ dependencies:
   http:
   font_awesome_flutter:
   flutter_slidable:
+  rxdart:
 
 dev_dependencies:
   flutter_test:

@@ -1,12 +1,10 @@
 import 'package:emailapp/AppDrawer.dart';
+import 'package:emailapp/ContactCounter.dart';
 import 'package:emailapp/ContactListBuilder.dart';
-import 'package:emailapp/manager/ContactManager.dart';
 import 'package:emailapp/screen/ContactSearch.dart';
 import 'package:flutter/material.dart';
 
 class ContactsScreen extends StatelessWidget {
-  final manager = ContactManager();
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -14,25 +12,13 @@ class ContactsScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text("Contacts"),
           actions: <Widget>[
-            StreamBuilder<int>(
-              stream: manager.contactCount,
-              builder: (context, snapshot) {
-                return Chip(
-                  label: Text(
-                    (snapshot.data ?? 0).toString(),
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
-                  ),
-                  backgroundColor: Colors.red,
-                );
-              },
-            ),
+            ContactCounter(),
             IconButton(
               icon: Icon(Icons.search),
               onPressed: () {
                 showSearch(
                   context: context,
-                  delegate: ContactSearch(manager: manager),
+                  delegate: ContactSearch(),
                 );
               },
             ),
@@ -43,7 +29,6 @@ class ContactsScreen extends StatelessWidget {
         ),
         drawer: AppDrawer(),
         body: ContactListBuilder(
-          stream: manager.contactListView,
           builder: (context, contacts) {
             return ListView.separated(
               itemCount: contacts?.length ?? 0,
