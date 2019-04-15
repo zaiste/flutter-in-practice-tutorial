@@ -8,7 +8,7 @@ void main() => runApp(EmailApp());
 class EmailApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Provider(
+    return Provider<ContactManager>(
       data: ContactManager(),
       child: MaterialApp(
         title: 'Flutter Demo',

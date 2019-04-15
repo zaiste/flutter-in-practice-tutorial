@@ -13,7 +13,7 @@ class ContactListBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ContactManager manager = Provider.of(context);
+    ContactManager manager = Provider.of<ContactManager>(context);
 
     return StreamBuilder<List<Contact>>(
       stream: manager.contactListView,
