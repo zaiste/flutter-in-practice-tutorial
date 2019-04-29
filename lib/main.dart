@@ -1,5 +1,6 @@
 import 'package:emailapp/App.dart';
 import 'package:emailapp/Provider.dart';
+import 'package:emailapp/UglyProvider.dart';
 import 'package:emailapp/manager/ContactManager.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,7 @@ class EmailApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(primarySwatch: Colors.indigo, accentColor: Colors.red),
-        home: App(),
+        home: UglyProvider(child: App()),
       ),
     );
   }
