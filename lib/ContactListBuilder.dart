@@ -1,22 +1,19 @@
 import 'dart:async';
 
-import 'package:emailapp/Provider.dart';
-import 'package:emailapp/manager/ContactManager.dart';
 import 'package:emailapp/model/Contact.dart';
 import 'package:flutter/material.dart';
 
 class ContactListBuilder extends StatelessWidget {
   @required
   final Function builder;
+  final Stream stream;
 
-  ContactListBuilder({this.builder});
+  ContactListBuilder({this.builder, this.stream});
 
   @override
   Widget build(BuildContext context) {
-    ContactManager manager = Provider.of<ContactManager>(context);
-
     return StreamBuilder<List<Contact>>(
-      stream: manager.contactListView,
+      stream: stream,
       builder: (BuildContext context, AsyncSnapshot<List<Contact>> snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.none:

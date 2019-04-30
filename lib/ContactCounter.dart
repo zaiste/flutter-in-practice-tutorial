@@ -1,3 +1,4 @@
+import 'package:emailapp/Overseer.dart';
 import 'package:emailapp/Provider.dart';
 import 'package:emailapp/manager/ContactManager.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,7 @@ import 'package:flutter/material.dart';
 class ContactCounter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ContactManager manager = Provider.of<ContactManager>(context);
+    ContactManager manager = Provider.of(context).fetch(ContactManager);
 
     return StreamBuilder<int>(
       stream: manager.contactCount,
