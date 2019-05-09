@@ -1,7 +1,6 @@
 import 'package:emailapp/AppDrawer.dart';
 import 'package:emailapp/ContactCounter.dart';
 import 'package:emailapp/ContactListBuilder.dart';
-import 'package:emailapp/Overseer.dart';
 import 'package:emailapp/Provider.dart';
 import 'package:emailapp/manager/ContactManager.dart';
 import 'package:emailapp/screen/ContactSearch.dart';
@@ -34,7 +33,7 @@ class ContactsScreen extends StatelessWidget {
         ),
         drawer: AppDrawer(),
         body: ContactListBuilder(
-          stream: manager.contactListView,
+          stream: manager.browse$(),
           builder: (context, contacts) {
             return ListView.separated(
               itemCount: contacts?.length ?? 0,

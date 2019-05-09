@@ -1,7 +1,6 @@
 import 'package:emailapp/AppDrawer.dart';
 import 'package:emailapp/Counter.dart';
 import 'package:emailapp/FabButton.dart';
-import 'package:emailapp/UglyProvider.dart';
 import 'package:flutter/material.dart';
 
 class CalendarScreen extends StatelessWidget {
