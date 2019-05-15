@@ -11,6 +11,8 @@ class ContactService {
     http.Response response = await http.get(_url);
     String content = response.body;
 
+    await Future.delayed(Duration(seconds: 2));
+
     List collection = json.decode(content);
 
     Iterable<Contact> _contacts = collection.map((_) => Contact.fromJson(_));
