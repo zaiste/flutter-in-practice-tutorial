@@ -40,8 +40,10 @@ class ContactSearch extends SearchDelegate {
       );
     }
 
+    manager.inFilter.add(query);
+
     return ContactListBuilder(
-      stream: manager.browse$(filter: query),
+      stream: manager.browse$,
       builder: (context, contacts) {
         return ListView.separated(
           itemCount: contacts?.length ?? 0,
