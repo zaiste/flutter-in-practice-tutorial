@@ -7,16 +7,16 @@ import 'package:rxdart/rxdart.dart';
 
 class ContactManager {
   final PublishSubject<String> _filterSubject = PublishSubject<String>();
-  final BehaviorSubject<int> _countSubject = BehaviorSubject<int>();
+  final PublishSubject<int> _countSubject = PublishSubject<int>();
   final PublishSubject<List<Contact>> _collectionSubject = PublishSubject();
 
   Sink<String> get inFilter => _filterSubject.sink;
 
-  Stream<int> get count$ => _countSubject.stream;
-  Stream<List<Contact>> get browse$ => _collectionSubject.stream;
+  Observable<int> get count$ => _countSubject.stream;
+  Observable<List<Contact>> get browse$ => _collectionSubject.stream;
 
   ContactManager() {
-    _filterSubject.stream.listen((filter) async {
+    _filterSubject.listen((filter) async {
       var contacts = await ContactService.browse(filter: filter);
 
       _collectionSubject.add(contacts);
