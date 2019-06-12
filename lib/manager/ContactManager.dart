@@ -16,7 +16,7 @@ class ContactManager {
   Observable<List<Contact>> get browse$ => _collectionSubject.stream;
 
   ContactManager() {
-    _filterSubject.listen((filter) async {
+    _filterSubject.debounce(Duration(milliseconds: 500)).listen((filter) async {
       var contacts = await ContactService.browse(filter: filter);
 
       _collectionSubject.add(contacts);
