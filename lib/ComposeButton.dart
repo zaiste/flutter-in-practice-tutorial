@@ -1,5 +1,5 @@
 import 'package:emailapp/Message.dart';
-import 'package:emailapp/MessageCompose.dart';
+import 'package:emailapp/screen/MessageCompose.dart';
 import 'package:flutter/material.dart';
 
 class ComposeButton extends StatelessWidget {

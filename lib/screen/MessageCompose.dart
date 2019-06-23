@@ -1,5 +1,9 @@
 import 'package:emailapp/Message.dart';
+import 'package:emailapp/Observer.dart';
+import 'package:emailapp/Provider.dart';
+import 'package:emailapp/manager/MessageFormManager.dart';
 import 'package:flutter/material.dart';
+import 'package:rxdart/rxdart.dart';
 
 class MessageCompose extends StatefulWidget {
   @override
@@ -15,6 +19,8 @@ class _MessageComposeState extends State<MessageCompose> {
 
   @override
   Widget build(BuildContext context) {
+    MessageFormManager manager = Provider.of(context).fetch(MessageFormManager);
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Compose New Message"),
@@ -25,15 +31,26 @@ class _MessageComposeState extends State<MessageCompose> {
           child: Column(
             children: <Widget>[
               ListTile(
-                title: TextFormField(
-                  validator: (value) => !value.contains('@')
-                      ? "`TO` field must be a valid email"
-                      : null,
-                  onSaved: (value) => to = value,
-                  decoration: InputDecoration(
-                    labelText: 'TO',
-                    labelStyle: TextStyle(fontWeight: FontWeight.bold),
-                  ),
+                title: Observer(
+                  stream: manager.email$,
+                  onSuccess: (context, data) {
+                    return TextField(
+                      onChanged: manager.inEmail.add,
+                      decoration: InputDecoration(
+                        labelText: 'TO',
+                        labelStyle: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    );
+                  },
+                  onError: (context, error) {
+                    return TextField(
+                      decoration: InputDecoration(
+                        labelText: 'TO (error)',
+                        labelStyle: TextStyle(fontWeight: FontWeight.bold),
+                        errorText: 'This field is invalid',
+                      ),
+                    );
+                  },
                 ),
               ),
               ListTile(

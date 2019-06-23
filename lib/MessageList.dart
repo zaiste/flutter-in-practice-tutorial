@@ -51,7 +51,7 @@ class _MessageListState extends State<MessageList> {
                 Message message = messages[index];
 
                 return Slidable(
-                  delegate: SlidableDrawerDelegate(),
+                  actionPane: SlidableDrawerActionPane(),
                   actionExtentRatio: 0.25,
                   actions: <Widget>[
                     IconSlideAction(

@@ -17,7 +17,7 @@ class ContactManager {
 
   ContactManager() {
     _filterSubject
-        .debounce(Duration(milliseconds: 500))
+        .debounceTime(Duration(milliseconds: 500))
         .switchMap((filter) async* {
       yield await ContactService.browse(filter: filter);
     }).listen((contacts) async {
