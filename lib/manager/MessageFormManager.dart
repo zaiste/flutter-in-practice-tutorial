@@ -7,15 +7,15 @@ import 'package:rxdart/rxdart.dart';
 class MessageFormManager with Validation {
   final _email = BehaviorSubject<String>();
   Stream<String> get email$ => _email.stream.transform(validateEmail);
-  Sink<String> get inEmail => _email.sink;
+  void setEmail(String value) => _email.sink.add(value);
 
   final _subject = BehaviorSubject<String>();
   Stream<String> get subject$ => _subject.stream.transform(validateSubject);
-  Sink<String> get inSubject => _subject.sink;
+  void setSubject(String value) => _subject.sink.add(value);
 
   final _body = BehaviorSubject<String>();
   Stream<String> get body$ => _body.stream;
-  Sink<String> get inBody => _body.sink;
+  void setBody(String value) => _body.sink.add(value);
 
   Stream<bool> get isFormValid$ =>
       Observable.combineLatest([email$, subject$, body$], (values) => true);
