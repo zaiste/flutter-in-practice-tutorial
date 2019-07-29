@@ -84,7 +84,7 @@ class RxTextField<T> extends StatelessWidget {
     this.buildCounter,
     this.scrollController,
     this.scrollPhysics,
-  })
+  });
 
   @override
   Widget build(BuildContext context) {
