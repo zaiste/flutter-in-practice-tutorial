@@ -3,17 +3,18 @@ import 'package:emailapp/manager/CounterManager.dart';
 import 'package:emailapp/manager/MessageFormManager.dart';
 
 class Overseer {
-  Map<dynamic, dynamic> repository = {};
+  Map<dynamic, Manager> repository = {};
 
-  Overseer() {
-    register(ContactManager, ContactManager());
-    register(CounterManager, CounterManager());
-    register(MessageFormManager, MessageFormManager());
-  }
+  Map<dynamic, Function> _factories = {
+    ContactManager: () => ContactManager(),
+    CounterManager: () => CounterManager(),
+    MessageFormManager: () => MessageFormManager()
+  };
 
-  register(name, object) {
-    repository[name] = object;
-  }
+  static final Overseer _singleton = Overseer._internal();
+  Overseer._internal();
+  factory Overseer() => _singleton;
+
 
   fetch(name) => repository[name];
 }
