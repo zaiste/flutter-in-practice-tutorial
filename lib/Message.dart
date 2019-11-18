@@ -19,7 +19,7 @@ class Message {
   static Future<List<Message>> browse({status = 'important'}) async {
     String url = status == 'important'
         ? 'http://www.mocky.io/v2/5c9a76733500006200d0c663'
-        : 'http://www.mocky.io/v2/5c70416438000054003fcbe7';
+        : 'http://www.mocky.io/v2/5db88aca3b000006f735f1e2';
 
     http.Response response = await http.get(url);
 

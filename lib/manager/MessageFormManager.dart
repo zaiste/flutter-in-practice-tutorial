@@ -1,10 +1,12 @@
 import 'dart:async';
 
+import 'package:emailapp/Manager.dart';
 import 'package:emailapp/Message.dart';
+import 'package:emailapp/Overseer.dart';
 import 'package:emailapp/Validation.dart';
 import 'package:rxdart/rxdart.dart';
 
-class MessageFormManager with Validation {
+class MessageFormManager with Validation implements Manager {
   final _email = BehaviorSubject<String>();
   Stream<String> get email$ => _email.stream.transform(validateEmail);
   void setEmail(String value) => _email.sink.add(value);
@@ -26,4 +28,7 @@ class MessageFormManager with Validation {
 
     return Message(subject, body);
   }
+
+  @override
+  void dispose() {}
 }
