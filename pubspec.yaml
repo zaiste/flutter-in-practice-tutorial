@@ -22,6 +22,8 @@ dependencies:
   http:
   font_awesome_flutter:
   flutter_slidable:
+  flutter_html:
+  url_launcher:
   rxdart:
   rxform:
 
