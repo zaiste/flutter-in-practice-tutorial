@@ -7,7 +7,7 @@ class Provider extends InheritedWidget {
   Provider({Key key, Widget child, this.data}) : super(key: key, child: child);
 
   static Overseer of(BuildContext context) {
-    return (context.inheritFromWidgetOfExactType(Provider) as Provider).data;
+    return (context.dependOnInheritedWidgetOfExactType<Provider>()).data;
   }
 
   @override

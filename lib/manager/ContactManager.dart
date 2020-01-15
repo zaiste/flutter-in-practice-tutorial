@@ -13,8 +13,8 @@ class ContactManager implements Manager {
 
   Sink<String> get inFilter => _filterSubject.sink;
 
-  Observable<int> get count$ => _countSubject.stream;
-  Observable<List<Contact>> get browse$ => _collectionSubject.stream;
+  Stream<int> get count$ => _countSubject.stream;
+  Stream<List<Contact>> get browse$ => _collectionSubject.stream;
 
   ContactManager() {
     _filterSubject

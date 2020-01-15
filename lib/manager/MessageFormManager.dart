@@ -20,7 +20,7 @@ class MessageFormManager with Validation implements Manager {
   void setBody(String value) => _body.sink.add(value);
 
   Stream<bool> get isFormValid$ =>
-      Observable.combineLatest([email$, subject$, body$], (values) => true);
+      Rx.combineLatest([email$, subject$, body$], (values) => true);
 
   Message submit() {
     String subject = _subject.value;
