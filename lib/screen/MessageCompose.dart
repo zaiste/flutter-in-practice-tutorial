@@ -1,12 +1,12 @@
 import 'package:emailapp/Message.dart';
-import 'package:emailapp/Provider.dart';
 import 'package:emailapp/manager/MessageFormManager.dart';
 import 'package:flutter/material.dart';
 import 'package:rxform/rxform.dart';
+import 'package:sprinkle/SprinkleExtension.dart';
 
 class MessageCompose extends StatelessWidget {
   Widget build(BuildContext context) {
-    MessageFormManager manager = Provider.of(context).fetch(MessageFormManager);
+    MessageFormManager manager = context.fetch<MessageFormManager>();
     // var [email$, setEmail] = manager.useEmail()
 
     return Scaffold(

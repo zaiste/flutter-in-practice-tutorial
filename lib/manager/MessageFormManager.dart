@@ -1,10 +1,9 @@
 import 'dart:async';
 
-import 'package:emailapp/Manager.dart';
 import 'package:emailapp/Message.dart';
-import 'package:emailapp/Overseer.dart';
 import 'package:emailapp/Validation.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:sprinkle/Manager.dart';
 
 class MessageFormManager with Validation implements Manager {
   final _email = BehaviorSubject<String>();

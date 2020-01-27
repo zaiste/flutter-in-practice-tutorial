@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:emailapp/Manager.dart';
 import 'package:emailapp/model/Contact.dart';
 import 'package:emailapp/service/ContactService.dart';
 
 import 'package:rxdart/rxdart.dart';
+import 'package:sprinkle/Manager.dart';
 
 class ContactManager implements Manager {
   final PublishSubject<String> _filterSubject = PublishSubject<String>();

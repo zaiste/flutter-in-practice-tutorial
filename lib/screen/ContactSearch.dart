@@ -1,8 +1,7 @@
 import 'package:emailapp/ContactListBuilder.dart';
-import 'package:emailapp/Overseer.dart';
-import 'package:emailapp/Provider.dart';
 import 'package:emailapp/manager/ContactManager.dart';
 import 'package:flutter/material.dart';
+import 'package:sprinkle/SprinkleExtension.dart';
 
 class ContactSearch extends SearchDelegate {
   final ContactManager manager;
@@ -38,7 +37,7 @@ class ContactSearch extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    ContactManager manager = Provider.of(context).fetch(ContactManager);
+    ContactManager manager = context.fetch<ContactManager>();
 
     manager.inFilter.add(query);
 

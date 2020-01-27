@@ -1,15 +1,15 @@
 import 'package:emailapp/AppDrawer.dart';
 import 'package:emailapp/ContactCounter.dart';
 import 'package:emailapp/ContactListBuilder.dart';
-import 'package:emailapp/Provider.dart';
 import 'package:emailapp/manager/ContactManager.dart';
 import 'package:emailapp/screen/ContactSearch.dart';
 import 'package:flutter/material.dart';
+import 'package:sprinkle/SprinkleExtension.dart';
 
 class ContactsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ContactManager manager = Provider.of(context).fetch(ContactManager);
+    ContactManager manager = context.fetch<ContactManager>();
 
     manager.inFilter.add('');
 

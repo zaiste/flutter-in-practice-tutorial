@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:emailapp/Manager.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:sprinkle/Manager.dart';
 
 class CounterManager implements Manager {
   BehaviorSubject<int> _counter = BehaviorSubject<int>.seeded(0);

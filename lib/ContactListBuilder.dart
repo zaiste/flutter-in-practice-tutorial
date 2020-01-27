@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:emailapp/Observer.dart';
 import 'package:emailapp/model/Contact.dart';
 import 'package:flutter/material.dart';
+import 'package:sprinkle/Observer.dart';
 
 class ContactListBuilder extends StatelessWidget {
   @required
