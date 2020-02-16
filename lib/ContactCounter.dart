@@ -1,12 +1,15 @@
-import 'package:emailapp/manager/ContactManager.dart';
 import 'package:flutter/material.dart';
 import 'package:sprinkle/Observer.dart';
 import 'package:sprinkle/SprinkleExtension.dart';
+import 'package:sprinkle/WebResourceManager.dart';
+
+import 'model/Contact.dart';
 
 class ContactCounter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ContactManager manager = context.fetch<ContactManager>();
+    WebResourceManager<Contact> manager =
+        context.fetch<WebResourceManager<Contact>>();
 
     return Observer<int>(
       stream: manager.count$,

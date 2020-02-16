@@ -1,13 +1,10 @@
 import 'package:emailapp/ContactListBuilder.dart';
-import 'package:emailapp/manager/ContactManager.dart';
+import 'package:emailapp/model/Contact.dart';
 import 'package:flutter/material.dart';
 import 'package:sprinkle/SprinkleExtension.dart';
+import 'package:sprinkle/WebResourceManager.dart';
 
 class ContactSearch extends SearchDelegate {
-  final ContactManager manager;
-
-  ContactSearch({this.manager});
-
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
@@ -37,12 +34,13 @@ class ContactSearch extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    ContactManager manager = context.fetch<ContactManager>();
+    WebResourceManager<Contact> manager =
+        context.fetch<WebResourceManager<Contact>>();
 
     manager.inFilter.add(query);
 
     return ContactListBuilder(
-      stream: manager.browse$,
+      stream: manager.collection$,
       builder: (context, contacts) {
         return ListView.separated(
           itemCount: contacts?.length ?? 0,

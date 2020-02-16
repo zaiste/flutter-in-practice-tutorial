@@ -1,15 +1,17 @@
 import 'package:emailapp/AppDrawer.dart';
 import 'package:emailapp/ContactCounter.dart';
 import 'package:emailapp/ContactListBuilder.dart';
-import 'package:emailapp/manager/ContactManager.dart';
+import 'package:emailapp/model/Contact.dart';
 import 'package:emailapp/screen/ContactSearch.dart';
 import 'package:flutter/material.dart';
 import 'package:sprinkle/SprinkleExtension.dart';
+import 'package:sprinkle/WebResourceManager.dart';
 
 class ContactsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ContactManager manager = context.fetch<ContactManager>();
+    WebResourceManager<Contact> manager =
+        context.fetch<WebResourceManager<Contact>>();
 
     manager.inFilter.add('');
 
@@ -35,7 +37,7 @@ class ContactsScreen extends StatelessWidget {
         ),
         drawer: AppDrawer(),
         body: ContactListBuilder(
-          stream: manager.browse$,
+          stream: manager.collection$,
           builder: (context, contacts) {
             return ListView.separated(
               itemCount: contacts?.length ?? 0,
